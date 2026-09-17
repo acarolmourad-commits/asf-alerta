@@ -1,33 +1,34 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ASF Alerta — Alertas de condições do mar</title>
-<meta name="description" content="Alertas da comunidade sobre condições do mar, correntes, águas-vivas e avisos importantes. Satélite do app ASF.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASF Alerta — Vale a pena ir surfar hoje?</title>
+<meta name="description" content="Score personalizado de condições: responda e descubra se vale a pena ir ao mar hoje. Satélite do app ASF.">
 <link rel="canonical" href="https://acarolmourad-commits.github.io/asf-alerta/">
-<style>body{font-family:system-ui,sans-serif;margin:0;background:#fef2f2;color:#450a0a}header{background:#dc2626;color:#fff;padding:2rem;text-align:center}nav{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem;background:#fee2e2}nav a{color:#b91c1c;text-decoration:none;font-size:.85rem}main{max-width:640px;margin:2rem auto;padding:0 1rem}.card{background:#fff;border-radius:16px;padding:1.5rem;margin-bottom:1rem;box-shadow:0 1px 4px rgba(0,0,0,.08)}select,input{width:100%;padding:.6rem;margin:.3rem 0;border:1px solid #fca5a5;border-radius:8px;box-sizing:border-box}button{background:#dc2626;color:#fff;border:0;border-radius:9999px;padding:.7rem 1.4rem;font-weight:700;cursor:pointer}.a{border-left:5px solid;padding:.8rem;margin:.5rem 0;border-radius:8px;background:#fff}.alto{border-color:#dc2626}.medio{border-color:#f59e0b}.info{border-color:#3b82f6}footer{text-align:center;padding:2rem;color:#78716c}</style>
+<style>body{font-family:system-ui,sans-serif;margin:0;background:#fffbeb;color:#451a03}header{background:#d97706;color:#fff;padding:2rem;text-align:center}nav{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem;background:#fef3c7}nav a{color:#b45309;text-decoration:none;font-size:.85rem}main{max-width:640px;margin:2rem auto;padding:0 1rem}.card{background:#fff;border-radius:16px;padding:1.5rem;margin-bottom:1rem;box-shadow:0 1px 4px rgba(0,0,0,.08)}label{display:block;margin:.5rem 0}select{width:100%;padding:.6rem;border:1px solid #fcd34d;border-radius:8px}button{background:#d97706;color:#fff;border:0;border-radius:9999px;padding:.8rem 1.6rem;font-weight:700;cursor:pointer}#score{font-size:3rem;text-align:center;margin:1rem 0}footer{text-align:center;padding:2rem;color:#92400e}</style>
 </head>
 <body>
-<header><h1>ASF Alerta 🚨</h1><p>Avisos da comunidade sobre o mar — por surfistas, para surfistas</p></header>
+<header><h1>ASF Alerta 🌡️</h1><p>Vale a pena ir surfar hoje? Descubra em 30 segundos</p></header>
 <nav id="net"></nav>
 <main>
-<div class="card"><h2>📣 Publicar alerta</h2>
-<select id="nivel"><option value="alto">🔴 Alto risco</option><option value="medio">🟡 Atenção</option><option value="info">🔵 Informativo</option></select>
-<select id="praia"><option>Maresias</option><option>Juquehy</option><option>Camburi</option><option>Baleia</option><option>Barra do Una</option><option>Boracéia</option><option>São Sebastião</option><option>Outra</option></select>
-<input id="msg" placeholder="Ex: Corrente forte no canto direito, cuidado iniciantes!">
-<button onclick="pub()">Alertar a comunidade</button></div>
-<div class="card"><h2>📋 Alertas recentes</h2><div id="al"></div></div>
-<div class="card"><p>🔗 Cruze alertas com a <a href="https://acarolmourad-commits.github.io/asf-previsao/">Previsão</a> e o <a href="https://acarolmourad-commits.github.io/asf-mare/">ASF Maré</a> antes de sair de casa. Emergência? Vá direto ao <a href="https://acarolmourad-commits.github.io/asf-sos/">ASF SOS</a>.</p></div>
+<div class="card">
+<h2>⚡ Verificador de condições</h2>
+<label>Altura das ondas<select id="ondas"><option value="10">1-2 pés (fraco)</option><option value="30" selected>2-4 pés (bom)</option><option value="25">4-6 pés (forte)</option><option value="5">6+ pés (pesado)</option></select></label>
+<label>Vento<select id="vento"><option value="30" selected>Offshore / terral</option><option value="20">Fraco / variável</option><option value="5">Onshore forte</option></select></label>
+<label>Maré<select id="mare"><option value="20" selected>Enchendo</option><option value="15">Seca</option><option value="10">Cheia</option><option value="15">Vazando</option></select></label>
+<label>Seu nível<select id="nivel"><option value="1">Iniciante</option><option value="1.1" selected>Intermediária</option><option value="1.2">Avançada</option></select></label>
+<label>Seu ânimo hoje 😊<select id="animo"><option value="20" selected>Animada!</option><option value="10">Mais ou menos</option><option value="0">Cansada</option></select></label>
+<button onclick="calc()">Calcular score</button>
+</div>
+<div class="card" id="res" style="display:none"><div id="score"></div><p id="verdict" style="text-align:center"></p></div>
+<div class="card"><p>📊 Confirme os números na <a href="https://acarolmourad-commits.github.io/asf-previsao/">ASF Previsão</a>, escolha o pico no <a href="https://acarolmourad-commits.github.io/asf-praias/">ASF Praias</a> e, se for, registre no <a href="https://acarolmourad-commits.github.io/asf-diario/">Diário</a> (+XP no <a href="https://acarolmourad-commits.github.io/asf-ranking/">Ranking</a>!).</p></div>
 </main>
 <footer>ASF Alerta — satélite do <a href="https://acarolmourad-commits.github.io/asf-app/">app ASF</a></footer>
 <script>
-const sites=[["asf-app","App ASF"],["asf-praias","Praias"],["asf-previsao","Previsão"],["asf-treino","Treino"],["asf-eventos","Eventos"],["asf-glossario","Glossário"],["asf-comunidade","Comunidade"],["asf-seguranca","Segurança"],["asf-equipamento","Equipamento"],["asf-quiz","Quiz"],["asf-nutricao","Nutrição"],["asf-viagens","Viagens"],["asf-bemestar","Bem-Estar"],["asf-diario","Diário"],["asf-apnea","Apneia"],["asf-carona","Carona"],["asf-mapa","Mapa"],["asf-mare","Maré"],["asf-ranking","Ranking"],["asf-sos","SOS"]];
+const sites=[["asf-app","App ASF"],["asf-praias","Praias"],["asf-previsao","Previsão"],["asf-treino","Treino"],["asf-eventos","Eventos"],["asf-glossario","Glossário"],["asf-comunidade","Comunidade"],["asf-seguranca","Segurança"],["asf-equipamento","Equipamento"],["asf-quiz","Quiz"],["asf-nutricao","Nutrição"],["asf-viagens","Viagens"],["asf-bemestar","Bem-Estar"],["asf-diario","Diário"],["asf-apnea","Apneia"],["asf-carona","Carona"],["asf-ranking","Ranking"],["asf-galeria","Galeria"],["asf-mentorias","Mentorias"]];
 document.getElementById('net').innerHTML=sites.map(s=>`<a href="https://acarolmourad-commits.github.io/${s[0]}/">${s[1]}</a>`).join('');
-const ic={alto:'🔴',medio:'🟡',info:'🔵'};
-function load(){return JSON.parse(localStorage.getItem('asf-alerta')||'[]');}
-function render(){const a=load();document.getElementById('al').innerHTML=a.length?a.map(x=>`<div class="a ${x.nivel}">${ic[x.nivel]} <b>${x.praia}</b> — ${x.msg}<br><small>${x.d}</small></div>`).join(''):'<p>Sem alertas. Mar calmo por aqui! 🌊</p>';}
-function pub(){const m=document.getElementById('msg').value.trim();if(!m)return alert('Descreva o alerta!');const a=load();a.unshift({nivel:document.getElementById('nivel').value,praia:document.getElementById('praia').value,msg:m,d:new Date().toLocaleString('pt-BR')});localStorage.setItem('asf-alerta',JSON.stringify(a.slice(0,30)));document.getElementById('msg').value='';render();}
-render();
+function calc(){const v=id=>parseFloat(document.getElementById(id).value);const s=Math.round((v('ondas')+v('vento')+v('mare')+v('animo'))*v('nivel'));document.getElementById('res').style.display='block';document.getElementById('score').textContent=s+'/120';let t,c;if(s>=90){t='🚀 VAI! Condições excelentes pra você!';c='#15803d';}else if(s>=65){t='🌊 Vale a sessão! Escolha bem o horário da maré.';c='#b45309';}else if(s>=45){t='🤔 Dia mediano — bom pra treinar remada e leitura de mar.';c='#a16207';}else{t='🛋️ Hoje talvez seja dia de yoga no ASF Bem-Estar...';c='#b91c1c';}const el=document.getElementById('verdict');el.textContent=t;el.style.color=c;el.style.fontWeight='700';}
 </script>
 </body>
 </html>
