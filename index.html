@@ -3,32 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ASF Alerta — Vale a pena ir surfar hoje?</title>
-<meta name="description" content="Score personalizado de condições: responda e descubra se vale a pena ir ao mar hoje. Satélite do app ASF.">
+<title>ASF Alerta — Alertas de mar e avisos da comunidade | ASF</title>
+<meta name="description" content="Alertas de condições do mar, avisos de segurança e recados da comunidade ASF em tempo real.">
 <link rel="canonical" href="https://acarolmourad-commits.github.io/asf-alerta/">
-<style>body{font-family:system-ui,sans-serif;margin:0;background:#fffbeb;color:#451a03}header{background:#d97706;color:#fff;padding:2rem;text-align:center}nav{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem;background:#fef3c7}nav a{color:#b45309;text-decoration:none;font-size:.85rem}main{max-width:640px;margin:2rem auto;padding:0 1rem}.card{background:#fff;border-radius:16px;padding:1.5rem;margin-bottom:1rem;box-shadow:0 1px 4px rgba(0,0,0,.08)}label{display:block;margin:.5rem 0}select{width:100%;padding:.6rem;border:1px solid #fcd34d;border-radius:8px}button{background:#d97706;color:#fff;border:0;border-radius:9999px;padding:.8rem 1.6rem;font-weight:700;cursor:pointer}#score{font-size:3rem;text-align:center;margin:1rem 0}footer{text-align:center;padding:2rem;color:#92400e}</style>
+<meta name="theme-color" content="#00A8CC">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"ASF Alerta","url":"https://acarolmourad-commits.github.io/asf-alerta/","applicationCategory":"SportsApplication","operatingSystem":"Web","inLanguage":"pt-BR","isPartOf":{"@type":"WebSite","name":"ASF — Associação Surf Feminino","url":"https://acarolmourad-commits.github.io/asf-app/"}}
+</script>
+<style>
+:root{--primary:#00A8CC;--dark:#0E2439;--purple:#9B59B6;--bg:#F7FBFC;--gray:#5A6B7A;--warn:#D7263D;--ok:#0B8A5F}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Outfit',system-ui,sans-serif;background:var(--bg);color:var(--dark)}
+nav{position:sticky;top:0;background:#fff;border-bottom:1px solid #E5EEF2;padding:10px 16px;display:flex;gap:14px;flex-wrap:wrap;z-index:10;justify-content:center}
+nav a{color:var(--primary);text-decoration:none;font-weight:700;font-size:13px}
+nav a.on{color:var(--warn)}
+header{background:linear-gradient(135deg,#D7263D,#FF7B54);color:#fff;padding:44px 20px 32px;text-align:center}
+header h1{font-size:clamp(22px,5vw,32px);margin:6px 0}
+header .tag{font-size:11px;letter-spacing:2px;text-transform:uppercase;opacity:.9}
+.wrap{max-width:760px;margin:0 auto;padding:24px 16px 60px}
+.alert{background:#fff;border-left:5px solid var(--warn);border-radius:12px;padding:16px 18px;margin:12px 0;box-shadow:0 2px 10px rgba(14,36,57,.06)}
+.alert.ok{border-color:var(--ok)}
+.alert.info{border-color:var(--primary)}
+.alert h2{font-size:15.5px}
+.muted{color:var(--gray);font-size:12.5px}
+.badge{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;margin-top:8px;background:#FDE8E8;color:var(--warn)}
+.ok .badge{background:#E3F8EF;color:var(--ok)}
+.info .badge{background:#E8F6FA;color:var(--primary)}
+footer{text-align:center;font-size:12.5px;color:var(--gray);padding:24px;border-top:1px solid #E5EEF2}
+</style>
 </head>
 <body>
-<header><h1>ASF Alerta 🌡️</h1><p>Vale a pena ir surfar hoje? Descubra em 30 segundos</p></header>
-<nav id="net"></nav>
-<main>
-<div class="card">
-<h2>⚡ Verificador de condições</h2>
-<label>Altura das ondas<select id="ondas"><option value="10">1-2 pés (fraco)</option><option value="30" selected>2-4 pés (bom)</option><option value="25">4-6 pés (forte)</option><option value="5">6+ pés (pesado)</option></select></label>
-<label>Vento<select id="vento"><option value="30" selected>Offshore / terral</option><option value="20">Fraco / variável</option><option value="5">Onshore forte</option></select></label>
-<label>Maré<select id="mare"><option value="20" selected>Enchendo</option><option value="15">Seca</option><option value="10">Cheia</option><option value="15">Vazando</option></select></label>
-<label>Seu nível<select id="nivel"><option value="1">Iniciante</option><option value="1.1" selected>Intermediária</option><option value="1.2">Avançada</option></select></label>
-<label>Seu ânimo hoje 😊<select id="animo"><option value="20" selected>Animada!</option><option value="10">Mais ou menos</option><option value="0">Cansada</option></select></label>
-<button onclick="calc()">Calcular score</button>
+<nav>
+<a href="https://acarolmourad-commits.github.io/asf-app/">🏄 ASF App</a>
+<a class="on" href="https://acarolmourad-commits.github.io/asf-alerta/">🚨 Alerta</a>
+<a href="https://acarolmourad-commits.github.io/asf-previsao/">🌊 Previsão</a>
+<a href="https://acarolmourad-commits.github.io/asf-praias/">🏖️ Praias</a>
+<a href="https://acarolmourad-commits.github.io/asf-seguranca/">🛟 Segurança</a>
+<a href="https://acarolmourad-commits.github.io/asf-comunidade/">🤝 Comunidade</a>
+<a href="https://acarolmourad-commits.github.io/asf-sos/">🆘 SOS</a>
+</nav>
+<header>
+<div class="tag">ASF · Alerta</div>
+<h1>Alertas do mar & da comunidade</h1>
+<p>Condições perigosas, avisos de segurança e recados importantes — em um só lugar.</p>
+</header>
+<main class="wrap">
+<div class="alert">
+<h2>🌊 Swell forte de sudeste nesta sexta</h2>
+<div class="muted">Ondas acima de 1,8m previstas para Maresias e Itamambuca. Iniciantes: prefiram as enseadas de Ubatuba.</div>
+<a class="badge" href="https://acarolmourad-commits.github.io/asf-previsao/" style="text-decoration:none">ver previsão 🌊</a>
 </div>
-<div class="card" id="res" style="display:none"><div id="score"></div><p id="verdict" style="text-align:center"></p></div>
-<div class="card"><p>📊 Confirme os números na <a href="https://acarolmourad-commits.github.io/asf-previsao/">ASF Previsão</a>, escolha o pico no <a href="https://acarolmourad-commits.github.io/asf-praias/">ASF Praias</a> e, se for, registre no <a href="https://acarolmourad-commits.github.io/asf-diario/">Diário</a> (+XP no <a href="https://acarolmourad-commits.github.io/asf-ranking/">Ranking</a>!).</p></div>
+<div class="alert info">
+<h2>📢 Mutirão de limpeza na Baleia no sábado</h2>
+<div class="muted">Encontro às 8h no posto 4. Traga luvas; a ASF leva os sacos e o café.</div>
+<a class="badge" href="https://acarolmourad-commits.github.io/asf-eventos/" style="text-decoration:none">agenda completa 📅</a>
+</div>
+<div class="alert ok">
+<h2>✅ Correntes de retorno: sem ocorrências nesta semana</h2>
+<div class="muted">Mesmo assim, revise o que fazer antes de entrar na água.</div>
+<a class="badge" href="https://acarolmourad-commits.github.io/asf-seguranca/" style="text-decoration:none">guia de segurança 🛟</a>
+</div>
+<p class="muted" style="margin-top:16px">Em emergência na água, use o <a href="https://acarolmourad-commits.github.io/asf-sos/" style="color:var(--warn)">ASF SOS</a> — bombeiros 193 · SAMU 192.</p>
 </main>
-<footer>ASF Alerta — satélite do <a href="https://acarolmourad-commits.github.io/asf-app/">app ASF</a></footer>
-<script>
-const sites=[["asf-app","App ASF"],["asf-praias","Praias"],["asf-previsao","Previsão"],["asf-treino","Treino"],["asf-eventos","Eventos"],["asf-glossario","Glossário"],["asf-comunidade","Comunidade"],["asf-seguranca","Segurança"],["asf-equipamento","Equipamento"],["asf-quiz","Quiz"],["asf-nutricao","Nutrição"],["asf-viagens","Viagens"],["asf-bemestar","Bem-Estar"],["asf-diario","Diário"],["asf-apnea","Apneia"],["asf-carona","Carona"],["asf-ranking","Ranking"],["asf-galeria","Galeria"],["asf-mentorias","Mentorias"]];
-document.getElementById('net').innerHTML=sites.map(s=>`<a href="https://acarolmourad-commits.github.io/${s[0]}/">${s[1]}</a>`).join('');
-function calc(){const v=id=>parseFloat(document.getElementById(id).value);const s=Math.round((v('ondas')+v('vento')+v('mare')+v('animo'))*v('nivel'));document.getElementById('res').style.display='block';document.getElementById('score').textContent=s+'/120';let t,c;if(s>=90){t='🚀 VAI! Condições excelentes pra você!';c='#15803d';}else if(s>=65){t='🌊 Vale a sessão! Escolha bem o horário da maré.';c='#b45309';}else if(s>=45){t='🤔 Dia mediano — bom pra treinar remada e leitura de mar.';c='#a16207';}else{t='🛋️ Hoje talvez seja dia de yoga no ASF Bem-Estar...';c='#b91c1c';}const el=document.getElementById('verdict');el.textContent=t;el.style.color=c;el.style.fontWeight='700';}
-</script>
+<footer>🌊 ASF — Associação Surf Feminino · <a href="https://acarolmourad-commits.github.io/" style="color:var(--primary)">Hub de apps</a> · <a href="https://acarolmourad-commits.github.io/asf-app/" style="color:var(--primary)">App principal</a></footer>
 </body>
 </html>
