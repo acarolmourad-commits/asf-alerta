@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ASF Alerta — Alertas de condições do mar</title>
+<meta name="description" content="Alertas da comunidade sobre condições do mar, correntes, águas-vivas e avisos importantes. Satélite do app ASF.">
+<link rel="canonical" href="https://acarolmourad-commits.github.io/asf-alerta/">
+<style>body{font-family:system-ui,sans-serif;margin:0;background:#fef2f2;color:#450a0a}header{background:#dc2626;color:#fff;padding:2rem;text-align:center}nav{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:1rem;background:#fee2e2}nav a{color:#b91c1c;text-decoration:none;font-size:.85rem}main{max-width:640px;margin:2rem auto;padding:0 1rem}.card{background:#fff;border-radius:16px;padding:1.5rem;margin-bottom:1rem;box-shadow:0 1px 4px rgba(0,0,0,.08)}select,input{width:100%;padding:.6rem;margin:.3rem 0;border:1px solid #fca5a5;border-radius:8px;box-sizing:border-box}button{background:#dc2626;color:#fff;border:0;border-radius:9999px;padding:.7rem 1.4rem;font-weight:700;cursor:pointer}.a{border-left:5px solid;padding:.8rem;margin:.5rem 0;border-radius:8px;background:#fff}.alto{border-color:#dc2626}.medio{border-color:#f59e0b}.info{border-color:#3b82f6}footer{text-align:center;padding:2rem;color:#78716c}</style>
+</head>
+<body>
+<header><h1>ASF Alerta 🚨</h1><p>Avisos da comunidade sobre o mar — por surfistas, para surfistas</p></header>
+<nav id="net"></nav>
+<main>
+<div class="card"><h2>📣 Publicar alerta</h2>
+<select id="nivel"><option value="alto">🔴 Alto risco</option><option value="medio">🟡 Atenção</option><option value="info">🔵 Informativo</option></select>
+<select id="praia"><option>Maresias</option><option>Juquehy</option><option>Camburi</option><option>Baleia</option><option>Barra do Una</option><option>Boracéia</option><option>São Sebastião</option><option>Outra</option></select>
+<input id="msg" placeholder="Ex: Corrente forte no canto direito, cuidado iniciantes!">
+<button onclick="pub()">Alertar a comunidade</button></div>
+<div class="card"><h2>📋 Alertas recentes</h2><div id="al"></div></div>
+<div class="card"><p>🔗 Cruze alertas com a <a href="https://acarolmourad-commits.github.io/asf-previsao/">Previsão</a> e o <a href="https://acarolmourad-commits.github.io/asf-mare/">ASF Maré</a> antes de sair de casa. Emergência? Vá direto ao <a href="https://acarolmourad-commits.github.io/asf-sos/">ASF SOS</a>.</p></div>
+</main>
+<footer>ASF Alerta — satélite do <a href="https://acarolmourad-commits.github.io/asf-app/">app ASF</a></footer>
+<script>
+const sites=[["asf-app","App ASF"],["asf-praias","Praias"],["asf-previsao","Previsão"],["asf-treino","Treino"],["asf-eventos","Eventos"],["asf-glossario","Glossário"],["asf-comunidade","Comunidade"],["asf-seguranca","Segurança"],["asf-equipamento","Equipamento"],["asf-quiz","Quiz"],["asf-nutricao","Nutrição"],["asf-viagens","Viagens"],["asf-bemestar","Bem-Estar"],["asf-diario","Diário"],["asf-apnea","Apneia"],["asf-carona","Carona"],["asf-mapa","Mapa"],["asf-mare","Maré"],["asf-ranking","Ranking"],["asf-sos","SOS"]];
+document.getElementById('net').innerHTML=sites.map(s=>`<a href="https://acarolmourad-commits.github.io/${s[0]}/">${s[1]}</a>`).join('');
+const ic={alto:'🔴',medio:'🟡',info:'🔵'};
+function load(){return JSON.parse(localStorage.getItem('asf-alerta')||'[]');}
+function render(){const a=load();document.getElementById('al').innerHTML=a.length?a.map(x=>`<div class="a ${x.nivel}">${ic[x.nivel]} <b>${x.praia}</b> — ${x.msg}<br><small>${x.d}</small></div>`).join(''):'<p>Sem alertas. Mar calmo por aqui! 🌊</p>';}
+function pub(){const m=document.getElementById('msg').value.trim();if(!m)return alert('Descreva o alerta!');const a=load();a.unshift({nivel:document.getElementById('nivel').value,praia:document.getElementById('praia').value,msg:m,d:new Date().toLocaleString('pt-BR')});localStorage.setItem('asf-alerta',JSON.stringify(a.slice(0,30)));document.getElementById('msg').value='';render();}
+render();
+</script>
+</body>
+</html>
