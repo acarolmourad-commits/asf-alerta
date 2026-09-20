@@ -3,9 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ASF Alerta — ASF</title>
-<meta name="description" content="Alertas de condições do mar e avisos da comunidade">
+<title>ASF Alerta — Condições do Mar em Tempo Real e Alertas de Surf | Litoral SP</title>
+<meta name="description" content="Condições do mar em tempo real (altura e período de ondas, vento) para Maresias, Camburi, Ubatuba e Praia Grande, alertas colaborativos da comunidade de surf feminino e guias de segurança: bandeiras da praia, correntes de retorno e contatos de emergência.">
+<meta name="keywords" content="condições do mar agora, altura das ondas maresias, alerta surf, corrente de retorno, segurança no mar, surf feminino, bandeiras da praia, vento litoral norte sp">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#ff4d8d">
 <link rel="canonical" href="https://acarolmourad-commits.github.io/asf-alerta/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ASF Alerta — Condições do Mar em Tempo Real">
+<meta property="og:description" content="Ondas, vento e alertas da comunidade em tempo real para surfar com segurança no litoral de SP.">
+<meta property="og:url" content="https://acarolmourad-commits.github.io/asf-alerta/">
+<meta property="og:image" content="https://acarolmourad-commits.github.io/asf-app/assets/images/hero-surf.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <style>
 :root{--rosa:#ff4d8d;--roxo:#7b2ff7;--areia:#fff5ec;--mar:#00c2cb}
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,sans-serif}
@@ -18,18 +27,37 @@ nav a:hover{background:var(--rosa);color:#fff}
 main{max-width:760px;margin:1.5rem auto;padding:0 1rem}
 .card{background:#fff;border-radius:16px;padding:1.4rem;box-shadow:0 4px 16px #7b2ff720;margin-bottom:1.2rem}
 .card h2{color:var(--roxo);margin-bottom:.6rem;font-size:1.2rem}
+.card h3{color:var(--rosa);margin:.8rem 0 .3rem;font-size:1rem}
+.card p,.card li{font-size:.95rem;line-height:1.6}
+.card ul,.card ol{margin:.4rem 0 .4rem 1.2rem}
 button{background:linear-gradient(90deg,var(--rosa),var(--roxo));color:#fff;border:none;padding:.6rem 1.2rem;border-radius:24px;font-size:1rem;cursor:pointer}
 button:hover{opacity:.85}
 input,select,textarea{padding:.5rem;border:1px solid #ddd;border-radius:10px;width:100%;margin:.3rem 0;font-size:1rem}
 .xp{position:fixed;bottom:1rem;right:1rem;background:#fff;border:2px solid var(--rosa);border-radius:24px;padding:.4rem 1rem;font-weight:bold;color:var(--roxo);box-shadow:0 4px 12px #0002;z-index:20}
 footer{text-align:center;padding:2rem;font-size:.8rem;color:#888}
+.praia{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.4rem;padding:.7rem .2rem;border-bottom:1px dashed #ffd3e6}
+.praia:last-child{border-bottom:none}
+.praia b{font-size:1rem;color:#0E2439}
+.praia small{color:#777;display:block}
+.chip{font-weight:bold;padding:.25rem .7rem;border-radius:20px;font-size:.8rem;white-space:nowrap}
+.ok{background:#e8f9e9;color:#1e7e34}
+.atencao{background:#fff6e0;color:#9a6a00}
+.perigo{background:#ffe5e5;color:#c0392b}
+.updated{font-size:.75rem;color:#999;margin-top:.5rem;text-align:right}
+details{margin:.4rem 0;border:1px solid #ffe3f1;border-radius:10px;padding:.6rem .9rem;background:#fffafd}
+summary{cursor:pointer;font-weight:600;color:var(--roxo)}
+.bandeira{display:flex;gap:.6rem;align-items:flex-start;margin:.4rem 0}
+.bandeira span{font-size:1.3rem}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"ASF Alerta","url":"https://acarolmourad-commits.github.io/asf-alerta/","applicationCategory":"SportsApplication","operatingSystem":"Web","inLanguage":"pt-BR","isPartOf":{"@type":"WebSite","name":"ASF — Associação Surf Feminino","url":"https://acarolmourad-commits.github.io/asf-app/"}}
 </script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"O que é uma corrente de retorno e como sair dela?","acceptedAnswer":{"@type":"Answer","text":"Corrente de retorno é um fluxo estreito e forte que puxa da praia para o mar. Se for pega, não nade contra a corrente: mantenha a calma, flutue, nade paralelo à areia até sair do canal e só então volte à praia. Acene pedindo ajuda se necessário."}},{"@type":"Question","name":"O que significam as bandeiras na praia?","acceptedAnswer":{"@type":"Answer","text":"Vermelha: perigo, evite entrar no mar. Amarela: atenção, condições moderadas. Verde: condições tranquilas. Bandeira dupla vermelha ou vermelha com listra: área proibida ou sem guarda-vidas. Faixa entre bandeiras vermelhas e amarelas: área monitorada para banhistas."}},{"@type":"Question","name":"Qual altura de onda é segura para iniciantes no surf?","acceptedAnswer":{"@type":"Answer","text":"Para iniciantes, ondas de 0,3 a 0,8 metro com período longo e vento fraco terral são ideais. Acima de 1,2 metro, o mar exige remada forte e experiência com correntes. Sempre cheque as condições em tempo real antes de entrar."}},{"@type":"Question","name":"Qual o telefone de emergência para afogamento no Brasil?","acceptedAnswer":{"@type":"Answer","text":"Ligue 193 (Corpo de Bombeiros) para emergências no mar. Em áreas sem guarda-vidas, não tente resgatar sozinha: jogue algo que flutue e chame ajuda profissional imediatamente."}}]}
+</script>
 </head>
 <body>
-<header><h1>🚨 ASF Alerta</h1><p>Alertas de condições do mar e avisos da comunidade</p></header>
+<header><h1>🚨 ASF Alerta</h1><p>Condições do mar em tempo real e alertas da comunidade de surf feminino</p></header>
 <nav><a href="https://acarolmourad-commits.github.io/asf-app/">🏄‍♀️ ASF App</a>
 <a href="https://acarolmourad-commits.github.io/asf-praias/">Praias</a>
 <a href="https://acarolmourad-commits.github.io/asf-previsao/">Previsão</a>
@@ -70,11 +98,45 @@ footer{text-align:center;padding:2rem;font-size:.8rem;color:#888}
 <a href="https://acarolmourad-commits.github.io/asf-popup/">Pop-up</a>
 <a href="https://acarolmourad-commits.github.io/asf-sonhos/">Sonhos</a></nav>
 <main>
-<div class="card"><h2>⚠️ Condição do mar agora</h2>
+<div class="card" id="tempo-real"><h2>🌊 Condições do mar em tempo real</h2>
+<p>Dados ao vivo de altura e período das ondas e vento (Open-Meteo), atualizados automaticamente a cada 10 minutos.</p>
+<div id="live"><p>Carregando condições ao vivo… ⏳</p></div>
+<p class="updated" id="updated"></p>
+</div>
+<div class="card"><h2>⚠️ Condição do mar agora — publique seu alerta</h2>
 <label>Como está o mar onde você está?</label><select id="c"><option value="">Escolha...</option><option value="ok">🟢 Boa pra surf</option><option value="atencao">🟡 Atenção: corrente/vento</option><option value="perigo">🔴 Perigo: não entre</option></select>
 <label>Pico/Praia</label><input id="p" placeholder="Ex.: Praia Grande, canto direito">
 <button onclick="pub()">Publicar alerta (+10 XP)</button></div>
 <div class="card"><h2>📢 Alertas da comunidade</h2><div id="lista"></div></div>
+<div class="card"><h2>🚩 Bandeiras de sinalização na praia</h2>
+<div class="bandeira"><span>🟢</span><p><b>Verde:</b> condições tranquilas. Ainda assim, respeite seus limites.</p></div>
+<div class="bandeira"><span>🟡</span><p><b>Amarela:</b> atenção — ondas médias ou correntes. Iniciantes devem ficar no raso.</p></div>
+<div class="bandeira"><span>🔴</span><p><b>Vermelha:</b> perigo. Evite entrar no mar.</p></div>
+<div class="bandeira"><span>🚩</span><p><b>Dupla vermelha:</b> área fechada ou sem guarda-vidas. Não entre.</p></div>
+<div class="bandeira"><span>🏊</span><p><b>Vermelha + amarela (par):</b> delimitam a faixa monitorada pelos guarda-vidas — surfe fora dela, com prancha, apenas onde permitido.</p></div>
+</div>
+<div class="card"><h2>🌀 Corrente de retorno: reconhecer e escapar</h2>
+<h3>Como identificar</h3>
+<ul><li>Canal de água mais escura, com poucas ondas quebrando</li>
+<li>Espuma ou debris se afastando da praia</li>
+<li>Diferença na textura da superfície (água "picotada")</li></ul>
+<h3>O que fazer se for pega</h3>
+<ol><li><b>Não entre em pânico</b> — a corrente não puxa para baixo, só para fora.</li>
+<li><b>Não nade contra</b> a corrente: você vai se cansar.</li>
+<li><b>Nade paralelo à areia</b> por 20–50 m até sair do canal.</li>
+<li>Só então volte à praia na diagonal, aproveitando as ondas.</li>
+<li>Se cansar, flutue e <b>acene pedindo ajuda</b>.</li></ol>
+</div>
+<div class="card"><h2>📞 Emergência no mar</h2>
+<ul><li><b>193</b> — Corpo de Bombeiros (resgate aquático)</li>
+<li><b>192</b> — SAMU</li>
+<li>Em áreas sem guarda-vidas, não tente o resgate sozinha: jogue algo que flutue (prancha, boia) e chame ajuda profissional.</li></ul>
+</div>
+<div class="card"><h2>❓ Perguntas frequentes</h2>
+<details><summary>O que é corrente de retorno e como sair dela?</summary><p>É um fluxo estreito e forte que puxa da praia para o mar. Não nade contra: flutue, nade paralelo à areia até sair do canal e volte na diagonal. Acene pedindo ajuda se precisar.</p></details>
+<details><summary>Qual altura de onda é segura para iniciantes?</summary><p>De 0,3 a 0,8 m com período longo e vento fraco. Acima de 1,2 m o mar exige remada forte e leitura de correntes.</p></details>
+<details><summary>De onde vêm os dados em tempo real?</summary><p>Da API marinha Open-Meteo (modelos de onda e vento atualizados de hora em hora), combinada com alertas colaborativos da comunidade ASF.</p></details>
+</div>
 <div class="card"><p>Combine com a <a href='https://acarolmourad-commits.github.io/asf-previsao/'>ASF Previsão</a> e o <a href='https://acarolmourad-commits.github.io/asf-sos/'>ASF SOS</a>.</p></div>
 <div class="card"><h2>🌐 Ecossistema ASF</h2><p>Este app faz parte da constelação ASF — Associação de Surf Feminino. Ganhe XP aqui e veja seu progresso no <a href="https://acarolmourad-commits.github.io/asf-ranking/">ASF Ranking</a>. App principal: <a href="https://acarolmourad-commits.github.io/asf-app/">ASF App</a>.</p></div>
 </main>
@@ -85,6 +147,35 @@ const XP=()=>parseInt(localStorage.getItem('asf_xp')||'0');
 function addXP(n){localStorage.setItem('asf_xp',XP()+n);document.getElementById('xp').textContent=XP();}
 document.getElementById('xp').textContent=XP();
 const seed=[{c:'ok',p:'Maresias',t:'há 2h'},{c:'atencao',p:'Camburi — corrente no canto esquerdo',t:'há 40min'}];const IC={ok:'🟢',atencao:'🟡',perigo:'🔴'};function render(){const l=JSON.parse(localStorage.getItem('asf_alertas')||'null')||seed;document.getElementById('lista').innerHTML=l.map(a=>`<p>${IC[a.c]||'⚪'} <b>${a.p}</b> <small>(${a.t})</small></p><hr>`).join('');}function pub(){const c=document.getElementById('c').value,p=document.getElementById('p').value;if(!c||!p)return;const l=JSON.parse(localStorage.getItem('asf_alertas')||'null')||seed;l.unshift({c,p,t:'agora'});localStorage.setItem('asf_alertas',JSON.stringify(l));render();addXP(10);}render();
+
+/* Condições do mar em tempo real — Open-Meteo Marine + Weather (sem chave) */
+const PRAIAS=[
+ {nome:'Maresias',lat:-23.80,lon:-45.56},
+ {nome:'Camburi',lat:-23.77,lon:-45.64},
+ {nome:'Ubatuba (Praia Grande)',lat:-23.44,lon:-45.07},
+ {nome:'Praia Grande',lat:-24.01,lon:-46.42}
+];
+function classifica(h){if(h==null)return['','—'];if(h<1.0)return['ok','🟢 Boa'];if(h<1.8)return['atencao','🟡 Atenção'];return['perigo','🔴 Perigo'];}
+async function loadLive(){
+ const box=document.getElementById('live');
+ try{
+  const rows=await Promise.all(PRAIAS.map(async b=>{
+   const m=await (await fetch('https://marine-api.open-meteo.com/v1/marine?latitude='+b.lat+'&longitude='+b.lon+'&current=wave_height,wave_period,swell_wave_height&timezone=America%2FSao_Paulo')).json();
+   const w=await (await fetch('https://api.open-meteo.com/v1/forecast?latitude='+b.lat+'&longitude='+b.lon+'&current=wind_speed_10m,wind_direction_10m&timezone=America%2FSao_Paulo')).json();
+   const h=m.current&&m.current.wave_height, per=m.current&&m.current.wave_period, swell=m.current&&m.current.swell_wave_height;
+   const vento=w.current&&w.current.wind_speed_10m;
+   const [cls,rot]=classifica(h);
+   return '<div class="praia"><div><b>'+b.nome+'</b><small>🌊 '+(h!=null?h.toFixed(1)+' m':'—')+' · ⏱ '+(per!=null?Math.round(per)+' s':'—')+' de período · swell '+(swell!=null?swell.toFixed(1)+' m':'—')+' · 💨 '+(vento!=null?Math.round(vento)+' km/h':'—')+'</small></div><span class="chip '+cls+'">'+rot+'</span></div>';
+  }));
+  box.innerHTML=rows.join('');
+  const agora=new Date();
+  document.getElementById('updated').textContent='Atualizado às '+agora.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})+' · dados Open-Meteo';
+ }catch(e){
+  box.innerHTML='<p>Não foi possível carregar os dados ao vivo agora. Tente novamente em instantes. 🙏</p>';
+ }
+}
+loadLive();
+setInterval(loadLive, 600000);
 </script>
 </body>
 </html>
